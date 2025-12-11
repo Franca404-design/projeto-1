@@ -1,0 +1,84 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lampada</title>
+    <style>
+        :root {
+            --antonio: #f900d0;
+            --sergio: #09dde8;
+            --amorim: #0f00dee4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(to top, var(--amorim), var(--sergio));
+            background-attachment: fixed;
+        }
+
+        header, section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        button {
+            width: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>lampada</h1>
+    </header>
+
+    <section>
+        <div>
+            <img src="./img/lamp_off.png" alt="lampada off" id="lamp">
+        </div>
+
+        <div>
+            <button id="turnOn">ligar</button>
+            <button id="turnOff">desligar</button>
+        </div>
+    </section>
+
+    <script>
+        const turnOn = document.getElementById('turnOn');
+        const turnOff = document.getElementById('turnOff');
+        const lamp = document.getElementById('lamp');
+
+        function isLampBroken() {
+            return lamp.src.indexOf('quebrada') > -1;
+        }
+
+        function lampOn() {
+            if (!isLampBroken()) {
+                lamp.src = './img/lamp_on.png';
+            }
+        }
+
+        function lampOff() {
+            if (!isLampBroken()) {
+                lamp.src = './img/lamp_off.png';
+            }
+        }
+
+        function lampBroken() {
+            lamp.src = 'img/lamp_broke.png';
+        }
+
+        turnOn.addEventListener('click', lampOn);
+        turnOff.addEventListener('click', lampOff);
+        lamp.addEventListener('mouseover', lampOn);
+        lamp.addEventListener('mouseleave', lampOff);
+        lamp.addEventListener('dblclick', lampBroken);
+    </script>
+</body>
+</html>
